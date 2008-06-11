@@ -352,39 +352,6 @@ plugin.tx_mmdamfilelist_pi1.address {
 	address_pid = -1	
 	}
 
-plugin.tx_mmdamfilelist_pi1.addressfilter.10 = USER
-plugin.tx_mmdamfilelist_pi1.addressfilter.10 {
-	userFunc = tx_mmdamfilelist_pi1->getSubTableLinkWidget
-	
-	localconf.listView < plugin.tx_mmdamfilelist_pi1.listView
-	localconf.singleView < plugin.tx_mmdamfilelist_pi1.singleView
-	localconf.pidList < plugin.tx_mmdamfilelist_pi1.pidList
-	localconf.recursive < plugin.tx_mmdamfilelist_pi1.recursive
-
-	localconf.tablepid < plugin.tx_mmdamfilelist_pi1.address.address_pid
-	
-	localconf.tablename			= tt_address
-	localconf.fieldname			= company
-	//localconf.fieldname		= name,email
-	localconf.filterfield		= tx_mmdamfilelis_address_uid
-	
-	//localconf.elementtype		= list
-	localconf.elementtype		= combo
-		
-	localconf.linkfield			= link
-	localconf.linktarget		= _blank
-	//localconf.entry2remove	= --- nicht definiert ---,-- nicht definiert --,-- leer --
-		
-		
-	// comes from locallang.php
-	localconf.firstcomboentry	= firstcomboentry
-	localconf.label				= label.combo.address
-	//localconf.firstcomboentry	= - Bitt auswählen -
-	}
-
-plugin.tx_mmdamfilelist_pi1.addressfilter.wrap = <div id="addressfilter">|</div>
-
-//page.10.marks.addressfilter < plugin.tx_mmdamfilelist_pi1.addressfilter
 
   # Example of how to overrule LOCAL_LANG values for the plugin:
 plugin.tx_mmdamfilelist_pi1._LOCAL_LANG.default {

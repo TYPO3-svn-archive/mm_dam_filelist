@@ -599,7 +599,9 @@ ob_end_clean();
 	}
 	
 	function initInternalFilterSelector() {
-		$this->internal['filterselector']['address'] = $this->getSubTableLinkWidget('',$this->conf['addressfilter.']['10.'],false);
+		if($this->useTTAddress()) {
+			$this->internal['filterselector']['address'] = $this->getSubTableLinkWidget('',$this->conf['addressfilter.']['10.'],false);
+		}
 	}
 	
 		
@@ -971,8 +973,11 @@ ob_end_clean();
 				if(is_array($result)) $result = implode(',', $result);
 				break;
 				*/
-				$result = $this->getAddressPart($fieldname);
-				$result = $this->getAutoFieldContent($fieldname,$result);
+				$result = '';
+				if($this->useTTAddress()) {
+					$result = $this->getAddressPart($fieldname);
+					$result = $this->getAutoFieldContent($fieldname,$result);
+				}
 				break;
 
 			//case 'addressfilter':
@@ -1001,6 +1006,8 @@ ob_end_clean();
 	function getAddressPart($fieldname) {
 		$pid = -1;
 		$realfieldname = str_replace('address_','',$fieldname);
+		
+		if(!$this->useTTAddress()) return '';
 		
 		if(isset($this->conf['address.']['address_pid'])) $pid = $this->conf['address.']['address_pid'];
 
@@ -1195,7 +1202,8 @@ ob_end_clean();
 		}
 		$localconf['entry2remove'] = $entry2remove;
 
-		if(isset($localconf['tablepid']) && $localconf['tablepid'] == -1) {
+		
+		if($this->useTTAddress() && isset($localconf['tablepid']) && $localconf['tablepid'] == -1) {
 			if(isset($this->conf['address.']['address_pid'])) {
 				$localconf['tablepid'] = $this->conf['address.']['address_pid'];
 			}
@@ -1210,6 +1218,14 @@ ob_end_clean();
 		return $content;
 		
 		//return $this->createSubTableLinkWidget('tx_mmhutinfo_hutguide','name','hutguide_uid','combo');
+	}
+	
+	function useTTAddress() {
+		$extConf 	= unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['mm_dam_filelist']);
+		$use_ttaddress_connection 	= $extConf['use_ttaddress_connection'];
+
+		//t3lib_div::debug($extConf,'$extConf=');
+		return (t3lib_extMgm::isLoaded('tt_address') && $use_ttaddress_connection);
 	}
 		
 }
