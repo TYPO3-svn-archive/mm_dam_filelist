@@ -4,7 +4,7 @@
 
 plugin.tx_mmdamfilelist_pi1 {
 	// Allows Caching for this plugin
-	allowCaching = 1
+	allowCaching = 0
 	
 	// Good for "normal" Plugins - but bad for DAM - so enable this setting for DAM
 	turnOffDifferentLanguagesInOneFolder = true
@@ -92,6 +92,9 @@ plugin.tx_mmdamfilelist_pi1 {
 	singlePid = 0
 	
 	show_filter = 0
+	
+	// Replaces blanks in modeselectors (categories) with &nbsp; (avoids linebreaks in IE)
+	replace_blank_in_modeselectors = 1
 	}
 	
 plugin.tx_mmdamfilelist_pi1.listView {
@@ -116,6 +119,8 @@ plugin.tx_mmdamfilelist_pi1.listView {
 	// Width of Column
 	col_width_style = 100%
 	
+	// Uses a div based searchbox
+	// use_alternate_searchbox = 1
 	}
 
 plugin.tx_mmdamfilelist_pi1.singleView {

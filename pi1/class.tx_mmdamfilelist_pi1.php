@@ -97,7 +97,10 @@ class tx_mmdamfilelist_pi1 extends mmlib_extfrontend {
 		{
 		global $xajax;
 		
+		
 		$conf = $this->initPlugin($conf);
+
+		//t3lib_div::debug($this->piVars,'$this->piVars');
 		
 		// Overwrites the Configsettings
 		if(isset($this->piVars['viewmode'])) 		$this->conf['view_mode'] = $this->piVars['viewmode'];
@@ -599,7 +602,7 @@ ob_end_clean();
 	}
 	
 	function initInternalFilterSelector() {
-		if($this->useTTAddress()) {
+		if($this->useTTAddress() && isset($this->conf['addressfilter.'])) {
 			$this->internal['filterselector']['address'] = $this->getSubTableLinkWidget('',$this->conf['addressfilter.']['10.'],false);
 		}
 	}
@@ -1182,7 +1185,7 @@ ob_end_clean();
 		//t3lib_div::debug($conf,1);
 		
 		if($reinit) $this->initPlugin($localconf);
-		
+	
 		/*
 		$tablename			= $localconf['tablename'];
 		$fieldname			= $localconf['fieldname'];

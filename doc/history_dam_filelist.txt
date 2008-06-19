@@ -1,4 +1,8 @@
-Version 1.1.0
+Version 1.0.6
+				Implementation of realurl-settings
+				Finetuning with tt_address connection,
+				Created ext_conf_template.txt to turn on/off the tt_address connection
+Version 1.0.5
 	08.04.28	Added the tt_address connection
 				typodbfield - link, protocoll will be added automaticaly	
 	

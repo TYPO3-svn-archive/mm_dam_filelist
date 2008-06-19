@@ -83,7 +83,7 @@
             <label index="tt_content.pi_flexform.sheet_main.remark_amc"></label>
             <label index="tt_content.pi_flexform.sheet_main.add_modeswitch_treeview">Modeswitch für Tree-Ansicht:</label>
             <label index="tt_content.pi_flexform.sheet_main.remark_ms_mustbeon"></label>
-            <label index="tt_content.pi_flexform.sheet_main.show_filter">Filter combobx anzeigen:</label>
+            <label index="tt_content.pi_flexform.sheet_main.show_filter">Adress-Combobox anzeigen:</label>
             <label index="tt_content.pi_flexform.sheet1">Kategorie</label>
             <label index="tt_content.pi_flexform.sheet2">Listen-Ansicht</label>
             <label index="tt_content.pi_flexform.sheet_tree">Tree-Ansicht</label>

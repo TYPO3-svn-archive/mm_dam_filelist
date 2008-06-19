@@ -22,7 +22,8 @@ plugin.tx_mmdamfilelist_pi1.typodbfield {
 	file_ctime < .file_mtime
    }
    
-plugin.tx_mmdamfilelist_pi1.listView.templateFile = list_view-address.html   
+plugin.tx_mmdamfilelist_pi1.listView.templateFile = list_view-address.html
+plugin.tx_mmdamfilelist_pi1.listView.use_alternate_searchbox = 1
 plugin.tx_mmdamfilelist_pi1.singleView.templateFile = single_view-address.html
    
 plugin.tx_mmdamfilelist_pi1.typodbfield {
