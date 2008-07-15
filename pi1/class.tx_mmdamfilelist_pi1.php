@@ -107,7 +107,7 @@ class tx_mmdamfilelist_pi1 extends mmlib_extfrontend {
 		if(strlen(trim($this->piVars['sword']))) 	$this->conf['view_mode'] = 'list';
 		if($this->conf['view_mode'] == 'tree') 		unset($this->piVars['mode']);
 		
-		if(isset($this->piVars['showUid'])) $this->setViewType('singleView');
+		if(isset($this->piVars['showuid'])) $this->setViewType('singleView');
 		
 		if($this->conf['use_ajax']) $this->initAJAX();
 		
@@ -470,7 +470,7 @@ ob_end_clean();
 			'showOrderSelector'				=> 'sMAIN:show_order_selector',
 			'show_empty_page_if_no_pivars'	=> 'sMAIN:show_empty_page_if_no_pivars',
 			'allowCaching'					=> 'sMAIN:allow_caching',
-			'singlePid'						=> 'sLISTVIEW:single_pid',
+			'singlePid'						=> 'sSINGLEVIEW:single_pid',
 			'show_filter'					=> 'sMAIN:show_filter',
 		
 			'show_download_link'	=> 'sLISTVIEW:show_download_link',
@@ -667,7 +667,7 @@ ob_end_clean();
 		$WHERE['enable_fields']		= $this->cObj->enableFields($this->getTableName());
 		$WHERE['enable_fields_cat']	= $this->cObj->enableFields('tx_dam_cat');
 		$WHERE['folder']			= strlen($this->internal['this_dam_path_only']) > 0 ? "tx_dam.file_path = '" . $this->internal['this_dam_path_only'] . "'": '' ;
-		$WHERE['showuid']			= $this->piVars['showUID'] ? "AND tx_dam.uid='" . $this->piVars['showUID'] . "''" : '';
+		$WHERE['showuid']			= $this->piVars['showuid'] ? "AND tx_dam.uid='" . $this->piVars['showuid'] . "''" : '';
 		$WHERE['statement']			= $strWhereStatement;
 
 		if(isset($this->piVars['filterfield']) && isset($this->piVars['filterid'])) {
@@ -859,6 +859,7 @@ ob_end_clean();
 		switch($fieldname) {
 			case 'ziplink':
 			case 'normallink':
+			case 'prevnormallink':
 			
 			// If the display of these buttons is turned off - return just a blank field
 			if($this->conf['show_download_link'] == 0 && $fieldname == 'normallink') return '';
@@ -878,7 +879,11 @@ ob_end_clean();
 			else if(strpos($content,'<img') === false) $content = $this->getLLabel($content,$content);
 			
 			if($fieldname == 'ziplink') $target = $aTarget['filebody'] . '.zip';
-			
+			if($fieldname == 'prevnormallink') {
+				$imgcontent = mmlib_extfrontend::getFieldContent($fieldname);
+				if($imgcontent != '' ) $content = $imgcontent;
+				//t3lib_div::debug($imgcontent,'$imgcontent');
+			}
 			// this md5 value will be compared with the File which is represented by the DAM-ID later on in php.zip (must be the same)
 			$additionalData['filemd5']			= md5_file($this->internal['currentRow']['file_path'] . $filename);
 			$additionalData['src']				= $src;
@@ -1014,6 +1019,15 @@ ob_end_clean();
 		
 		if(isset($this->conf['address.']['address_pid'])) $pid = $this->conf['address.']['address_pid'];
 
+		if($pid == -1) {
+			die("You must either turn off the tt_address-connection or you have to spcify the SYSFolder where the addresses are stored. Don't forget the singlepage confinguration!!");
+		}
+		/*
+		t3lib_div::debug($fieldname,'$fieldname');
+		t3lib_div::debug($realfieldname,'$realfieldname');
+		t3lib_div::debug($pid,'$pid');
+		*/
+		
 		$result = $this->getDataFromForeignTable('tx_mmdamfilelis_address_uid','tt_address',$realfieldname,true,$pid);
 		if(is_array($result)) $result = implode(',', $result);
 	

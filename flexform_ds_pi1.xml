@@ -336,21 +336,7 @@
 				</config>
 				</TCEforms>
 			</use_always_mime_type_images>
-			<single_pid>
-				<TCEforms>
-				<exclude>1</exclude>
-				<label>LLL:EXT:mm_dam_filelist/locallang_db.php:tt_content.pi_flexform.sheet_listview.single_pid</label>
-				<config>
-					<type>group</type>
-					<internal_type>db</internal_type>
-					<allowed>pages</allowed>
-					<size>1</size>
-					<maxitems>1</maxitems>
-					<minitems>0</minitems>
-					<show_thumbs>1</show_thumbs>
-				</config>
-				</TCEforms>
-			</single_pid>
+
      </el>
     </ROOT>
    </sLISTVIEW>
@@ -415,6 +401,21 @@
 					</config>
 				</TCEforms>
 			</templatefile>
+			<single_pid>
+				<TCEforms>
+				<exclude>1</exclude>
+				<label>LLL:EXT:mm_dam_filelist/locallang_db.php:tt_content.pi_flexform.sheet_listview.single_pid</label>
+				<config>
+					<type>group</type>
+					<internal_type>db</internal_type>
+					<allowed>pages</allowed>
+					<size>1</size>
+					<maxitems>1</maxitems>
+					<minitems>0</minitems>
+					<show_thumbs>1</show_thumbs>
+				</config>
+				</TCEforms>
+			</single_pid>			
      </el>
     </ROOT>
    </sSINGLEVIEW>
@@ -438,7 +439,7 @@
 				<TCEforms>
 				<label>LLL:EXT:mm_dam_filelist/locallang_db.php:tt_content.pi_flexform.label.preview_width</label>
 				<config>
-					<default>150c</default>
+					<default>100m</default>
 					<type>input</type>
 					<eval>string</eval>
 					<size>5</size>
@@ -449,7 +450,7 @@
 				<TCEforms>
 				<label>LLL:EXT:mm_dam_filelist/locallang_db.php:tt_content.pi_flexform.label.preview_height</label>
 				<config>
-					<default>150</default>
+					<default>300m</default>
 					<type>input</type>
 					<eval>string</eval>
 					<size>5</size>
@@ -460,7 +461,7 @@
 				<TCEforms>
 				<label>LLL:EXT:mm_dam_filelist/locallang_db.php:tt_content.pi_flexform.label.preview_max_w</label>
 				<config>
-					<default>100</default>
+					<default></default>
 					<type>input</type>
 					<eval>num</eval>
 					<size>5</size>
@@ -476,7 +477,7 @@
 				<TCEforms>
 				<label>LLL:EXT:mm_dam_filelist/locallang_db.php:tt_content.pi_flexform.label.preview_max_h</label>
 				<config>
-					<default>100</default>
+					<default></default>
 					<type>input</type>
 					<eval>num</eval>
 					<size>5</size>

@@ -204,10 +204,10 @@ plugin.tx_mmdamfilelist_pi1.typodbfield {
 		useMIMEImage = 0
 		
 		field = file_name
-		file.width = 150c
-		file.height = 150
-		file.maxW = 100
-		file.maxH = 100
+		file.width = 100m
+		file.height = 300m
+		//file.maxW = 100
+		//file.maxH = 100
 		#file.sample = 1
 		wrap = | <br/>
 	  	# stdWrap {
@@ -281,8 +281,22 @@ plugin.tx_mmdamfilelist_pi1.typodbfield {
 		#value = <img src="/typo3conf/ext/mm_dam_filelist/pi1/res/images/download_normal.jpg" border="0" alt="Download" title="Download"/> 
 		#value = Download
 		value = listview.normallink
-		}
 		
+		}
+	
+	// Sample for linking a preview-image to the "normal" downloadabel file
+	// Use this: <div ###PREVNORMALLINK_CLASS###>###PREVNORMALLINK###</div> as the placeholder in your template
+	//prevnormallink {
+	//	fieldtype = image
+	//	useMIMEImage = 0
+	//	
+	//	field = file_name
+	//	file.width = 100m
+	//	file.height = 300m
+	//		
+	//	field = file_name
+	//	}
+			
 	file_mtime {
 		fieldtype = stdwrap
 		strftime = %Y.%m.%d

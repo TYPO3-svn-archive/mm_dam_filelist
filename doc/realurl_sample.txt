@@ -132,9 +132,9 @@ $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['realurl'] = array (
 				),
 			), // mode
 			
-		'showUid' => array(			
+		'showuid' => array(			
 			'0' => array(
-				'GETvar' => 'tx_mmdamfilelist_pi1[showUid]' ,
+				'GETvar' => 'tx_mmdamfilelist_pi1[showuid]' ,
 				),
 			), // showUid 
 

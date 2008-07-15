@@ -4,6 +4,8 @@ use_ttaddress_connection = 1
  # cat=basic//20; type=int; label= Folder ID where addresses are stored:If you don't know which value to set - leave -1
 ttaddress_uid = -1
 
+ # cat=basic//30; type=boolean; label= Integrate REALURL-Settings
+realurlintegration = 1
 
 
 
