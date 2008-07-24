@@ -62,6 +62,19 @@ if($realurlintegration) {
 						'GETvar' => 'tx_mmdamfilelist_pi1[sword]' ,
 						),
 					), // sword
+
+				'filterfield' => array(			
+					'0' => array(
+						'GETvar' => 'tx_mmdamfilelist_pi1[filterfield]' ,
+						),
+					), // filterfield
+					
+				'filterid' => array(			
+					'0' => array(
+						'GETvar' => 'tx_mmdamfilelist_pi1[filterid]' ,
+						),
+					), // filterid
+					
 				// MM DAM FileList - end	
 	      ); 
 	}

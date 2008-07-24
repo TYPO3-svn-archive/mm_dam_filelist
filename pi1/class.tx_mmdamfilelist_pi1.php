@@ -84,6 +84,7 @@ class tx_mmdamfilelist_pi1 extends mmlib_extfrontend {
 	var $template			= null;
 	var $cattree			= null;
 	var $minibench			= null;
+	var $extConf 			= null;
 	
 	/**
 	 * Main-function
@@ -97,9 +98,14 @@ class tx_mmdamfilelist_pi1 extends mmlib_extfrontend {
 		{
 		global $xajax;
 		
+		foreach($this->piVars as $key => $value) {
+			//t3lib_div::debug($key . '-' . $value);
+		    }
 		
-		$conf = $this->initPlugin($conf);
-
+		$conf 			= $this->initPlugin($conf);
+		$this->extConf 	= unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['mm_dam_filelist']);
+		
+		//t3lib_div::debug($this->extConf,'$this->extConf');
 		//t3lib_div::debug($this->piVars,'$this->piVars');
 		
 		// Overwrites the Configsettings
@@ -671,6 +677,8 @@ ob_end_clean();
 		$WHERE['statement']			= $strWhereStatement;
 
 		if(isset($this->piVars['filterfield']) && isset($this->piVars['filterid'])) {
+			//$this->piVars['filterfield'] = 'tx_mmdamfilelis_address_uid';
+			// bei Rohloff notwendig
 			$WHERE['filterfield']	= $this->piVars['filterfield'] . ' = ' . t3lib_div::intval_positive($this->piVars['filterid']);
 		}
 		
@@ -1018,7 +1026,8 @@ ob_end_clean();
 		if(!$this->useTTAddress()) return '';
 		
 		if(isset($this->conf['address.']['address_pid'])) $pid = $this->conf['address.']['address_pid'];
-
+		else $pid = $this->extConf['ttaddress_uid'];
+		
 		if($pid == -1) {
 			die("You must either turn off the tt_address-connection or you have to spcify the SYSFolder where the addresses are stored. Don't forget the singlepage confinguration!!");
 		}
@@ -1223,7 +1232,7 @@ ob_end_clean();
 		if($this->useTTAddress() && isset($localconf['tablepid']) && $localconf['tablepid'] == -1) {
 			if(isset($this->conf['address.']['address_pid'])) {
 				$localconf['tablepid'] = $this->conf['address.']['address_pid'];
-			}
+			} else $localconf['tablepid'] = $this->extConf['ttaddress_uid'];
 		}
 		
 		//t3lib_div::debug($localconf,'$localconf');
@@ -1238,8 +1247,8 @@ ob_end_clean();
 	}
 	
 	function useTTAddress() {
-		$extConf 	= unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['mm_dam_filelist']);
-		$use_ttaddress_connection 	= $extConf['use_ttaddress_connection'];
+		//$extConf 	= unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['mm_dam_filelist']);
+		$use_ttaddress_connection 	= $this->extConf['use_ttaddress_connection'];
 
 		//t3lib_div::debug($extConf,'$extConf=');
 		return (t3lib_extMgm::isLoaded('tt_address') && $use_ttaddress_connection);
